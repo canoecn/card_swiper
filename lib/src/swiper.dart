@@ -944,7 +944,7 @@ class _StackViewState extends _CustomLayoutStateBase<_StackSwiper> {
     final offset = widget.scrollDirection == Axis.horizontal
         ? widget.axisDirection == AxisDirection.left
             ? Offset(f, 0.0)
-            : Offset(-f, 0.0)
+            : Offset(-f * 1.5, 0.0)
         : Offset(0.0, f);
 
     final alignment = widget.scrollDirection == Axis.horizontal

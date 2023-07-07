@@ -6,6 +6,7 @@ abstract class _CustomLayoutStateBase<T extends _SubSwiper> extends State<T>
   late double _swiperHeight;
   late Animation<double> _animation;
   late AnimationController _animationController;
+
   SwiperController get _controller => widget.controller;
   late int _startIndex;
   int? _animationCount;
@@ -90,8 +91,12 @@ abstract class _CustomLayoutStateBase<T extends _SubSwiper> extends State<T>
   Widget _buildItem(int i, int realIndex, double animationValue);
 
   Widget _buildContainer(List<Widget> list) {
-    return Stack(
-      children: list,
+    return Container(
+      //constraints: BoxConstraints.expand(),
+      alignment: Alignment.centerLeft,
+      child: Stack(
+        children: list,
+      ),
     );
   }
 
@@ -118,11 +123,12 @@ abstract class _CustomLayoutStateBase<T extends _SubSwiper> extends State<T>
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onPanStart: _onPanStart,
-      onPanEnd: _onPanEnd,
-      onPanUpdate: _onPanUpdate,
+      onHorizontalDragStart: _onPanStart,
+      onHorizontalDragEnd: _onPanEnd,
+      onHorizontalDragUpdate: _onPanUpdate,
       child: ClipRect(
-        child: Center(
+        child: Container(
+          constraints: BoxConstraints.expand(),
           child: _buildContainer(list),
         ),
       ),
